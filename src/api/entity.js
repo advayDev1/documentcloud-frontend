@@ -5,6 +5,12 @@ import { queryBuilder } from "@/util/url";
 
 import { page1, page2 } from './mockEntity';
 
+export async function extractEntities(id) {
+  const url = apiUrl(`documents/${id}/entities/`);
+  const { data } = await session.post(url);
+  return data;
+}
+
 export async function getEntities(id, page = 1) {
   // Returns annotations for the specified document
   const { data } = await session.get(
