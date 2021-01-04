@@ -13,8 +13,9 @@ export async function extractEntities(id) {
 
 export async function getEntities(id, page = 1) {
   // Returns annotations for the specified document
+  const url = apiUrl(queryBuilder(`documents/${id}/entities/`, { page }));
   const { data } = await session.get(
-    apiUrl(queryBuilder(`documents/${id}/entities/`, { page }))
+    url
   );
-  return new Entities(data);
+  return new Entities(url, data);
 }
